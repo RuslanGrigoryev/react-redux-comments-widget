@@ -11,11 +11,13 @@ class Form extends Component {
 
 	handleAddComment (e) {
 		e.preventDefault();
-		this.props.addComment(this.state.text);
-		this.setState({
-			text: ''
-		});
-		this.refs.addCommentInput.focus();
+		if (this.state.text !== '') {
+			this.props.addComment(this.state.text);
+			this.setState({
+				text: ''
+			});
+			this.refs.addCommentInput.focus();
+		}
 	}
 
 	handleChange (e) {
@@ -27,7 +29,6 @@ class Form extends Component {
 	render() {
 		return (
 			<form onSubmit={this.handleAddComment.bind(this)}>
-				<h2>Add new comment</h2>
 				<textarea 
 					rows="5" 
 					cols="50"
@@ -35,7 +36,7 @@ class Form extends Component {
 					autofocus="true"
 					ref="addCommentInput"
 					onChange={this.handleChange.bind(this)}
-					placeholder="Input new comment."></textarea>
+					placeholder="Type new comment."></textarea>
 				<p><button type="submit">Add comment</button></p>
 			</form>
 		)

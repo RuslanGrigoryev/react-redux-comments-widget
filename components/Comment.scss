@@ -1,0 +1,19 @@
+#r-comments {
+	width: 1024px;
+	margin: 10px auto 10px;
+
+	.r-comments {
+		&__list {
+			padding: 0;
+			list-style: none;
+		}
+
+		&__item {
+			border-bottom: 1px solid #ccc;
+
+			P {
+				margin: 5px 0;
+			}
+		}
+	}
+}

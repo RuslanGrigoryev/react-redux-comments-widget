@@ -10,7 +10,7 @@ class Comment extends Component {
 
 		const {comment, deleteComment} = this.props;
 		return (
-			<li>
+			<li className="r-comments__item">
 				<p><strong>Author: </strong>{comment.author}</p>
 				<p><strong>Text: </strong>{comment.text}</p>
 				<p><strong>Time: </strong>{comment.dt}</p>
