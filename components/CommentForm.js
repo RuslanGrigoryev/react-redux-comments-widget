@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 
-class Form extends Component {
+class CommentForm extends Component {
 
 	constructor(props, context) {
 	  super(props, context)
@@ -12,7 +12,7 @@ class Form extends Component {
 	handleAddComment (e) {
 		e.preventDefault();
 		if (this.state.text !== '') {
-			this.props.addComment(this.state.text);
+			this.props.addComment(this.state.text, this.props.parentId);
 			this.setState({
 				text: ''
 			});
@@ -28,7 +28,9 @@ class Form extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.handleAddComment.bind(this)}>
+			<form 
+				onSubmit={this.handleAddComment.bind(this)}
+				className="r-comments__form">
 				<textarea 
 					rows="5" 
 					cols="50"
@@ -43,4 +45,4 @@ class Form extends Component {
 	}
 }
 
-export default Form
+export default CommentForm

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Form from '../components/Form'
+import CommentForm from '../components/CommentForm'
 import CommentList from '../components/CommentList'
 import * as CommentActions from '../actions'
 
@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div id="r-comments">
         <CommentList comments={comments} actions={actions} />
-        <Form addComment={actions.addComment} />
+        <CommentForm addComment={actions.addComment} />
       </div>
     )
   }

@@ -9,10 +9,23 @@
 		}
 
 		&__item {
-			border-bottom: 1px solid #ccc;
+			border-left: 1px solid #ccc;
+			padding-left: 20px;
+			margin-bottom: 20px;
 
 			P {
 				margin: 5px 0;
+			}
+
+			BUTTON {
+				margin-right: 5px;
+			}
+		}
+
+		&__form {
+			TEXTAREA {
+				width: 100%;
+				resize: none;
 			}
 		}
 	}

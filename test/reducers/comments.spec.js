@@ -12,6 +12,12 @@ describe('comments reducer', () => {
         author: 'john doe',
         id: 0,
         dt: new Date().getHours() + ":" + new Date().getMinutes()
+      },
+      {
+        text: 'second comment',
+        author: 'john doe',
+        id: 1,
+        dt: new Date().getHours() + ":" + new Date().getMinutes()
       }
     ])
   })
