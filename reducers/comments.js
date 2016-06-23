@@ -56,6 +56,7 @@ export default function comments(state = initialState, action) {
                 }
               }
           }
+          if (child)
           return arr;
         }
 
@@ -68,9 +69,21 @@ export default function comments(state = initialState, action) {
       }(tempState, action.parentId);
 
     case DELETE_COMMENT:
-      return state.filter(comment =>
-        comment.id !== action.id
-      )
+
+    	var tempState = [...state],
+    		res = function filterArrayOfObjects (arr, id) {
+    		arr.forEach(function (item, index) {
+    			if (item.id === id) {
+    				arr.splice(index, 1);
+    			}
+    			if (item.children !== undefined && item.children.length) {
+    				filterArrayOfObjects(item.children, id);
+    			}
+    		});
+    		return arr;
+    	}(tempState, action.id);
+
+      return res;
 
     default:
       return state
