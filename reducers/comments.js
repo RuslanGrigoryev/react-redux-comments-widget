@@ -1,18 +1,33 @@
-import { ADD_COMMENT, DELETE_COMMENT } from '../constants/ActionTypes'
+import { ADD_COMMENT, DELETE_COMMENT, VOTE_COMMENT, UPVOTE_COMMENT } from '../constants/ActionTypes'
 
 const initialState = [
   {
     text: 'first comment',
     author: 'john doe',
     id: 1,
+    rating: 11,
     dt: new Date().getHours() + ":" + new Date().getMinutes(),
     children: []
   }, {
     text: 'second comment',
     author: 'john doe',
     id: 2,
+    rating: 7,
     dt: new Date().getHours() + ":" + new Date().getMinutes(),
-    children: []
+    children: [{
+    	text: 'third comment',
+    	author: 'john smith',
+    	id: 3,
+      rating: 17,
+    	children: [{
+    		text: 'next comment',
+    		author: 'john doe',
+    		id: 4,
+        rating: 2,
+    		dt: new Date().getHours() + ":" + new Date().getMinutes(),
+        children: []
+    	}]
+    }]
   }
 ]
 
@@ -37,6 +52,7 @@ export default function comments(state = initialState, action) {
             text: action.text,
             author: 'john doe',
             id: idCount + 1,
+            rating: 0,
             dt: new Date().getHours() + ":" + new Date().getMinutes(),
             parentId: action.parentId,
             children: []
@@ -84,6 +100,38 @@ export default function comments(state = initialState, action) {
     	}(tempState, action.id);
 
       return res;
+
+    case VOTE_COMMENT: 
+        var tempState = [...state],
+          res = function filterArrayOfObjects (arr, id) {
+          arr.forEach(function (item, index) {
+            if (item.id === id) {
+              item.rating = ++item.rating;
+            }
+            if (item.children !== undefined && item.children.length) {
+              filterArrayOfObjects(item.children, id);
+            }
+          });
+          return arr;
+        }(tempState, action.id);
+
+        return res;
+
+    case UPVOTE_COMMENT: 
+        var tempState = [...state],
+          res = function filterArrayOfObjects (arr, id) {
+          arr.forEach(function (item, index) {
+            if (item.id === id) {
+              item.rating = --item.rating;
+            }
+            if (item.children !== undefined && item.children.length) {
+              filterArrayOfObjects(item.children, id);
+            }
+          });
+          return arr;
+        }(tempState, action.id);
+
+        return res;   
 
     default:
       return state

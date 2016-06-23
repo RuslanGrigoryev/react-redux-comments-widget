@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
+import CommentRate from './CommentRate'
 
 
 class CommentItem extends Component {
@@ -25,6 +26,7 @@ class CommentItem extends Component {
 
 		return (
 			<li className="r-comments__item">
+				<CommentRate comment={comment} actions={actions} />
 				<p><strong>Id: </strong> {comment.id}</p>
 				<p><strong>Author: </strong>{comment.author}</p>
 				<p><strong>Text: </strong>{comment.text}</p>

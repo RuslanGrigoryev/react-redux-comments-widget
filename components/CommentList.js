@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-require("./Comment.scss");
+require("./scss/Comment.scss");
 import CommentItem from './CommentItem'
 
 class CommentList extends Component {
